@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Костанайская дистанция электроснабжения</title>
+    <style>
+.contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.contact-item {
+    background: rgba(255,215,0,0.05);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ffd70033;
+}
+
+.contact-item h3 {
+    color: #ffd700;
+    margin-top: 0;
+    border-bottom: 2px solid #ffd70033;
+    padding-bottom: 10px;
+}
+
+.sub-contact {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 6px;
+}
+
+.sub-contact h4 {
+    margin: 0 0 10px 0;
+    color: #ffd700;
+    font-size: 0.95em;
+}
+
+.contact-item a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.contact-item a:hover {
+    color: #ffd700;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .contacts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+ .org-structure-wrapper {
+    padding: 40px 20px;
+    background: rgba(255, 215, 0, 0.05);
+    border-top: 2px solid #ffd70033;
+}
+
+.org-final-v2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.org-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.org-node {
+    background: rgba(255, 215, 0, 0.08);
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    padding: 15px 25px;
+    min-width: 180px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    flex: 1 1 220px;
+}
+
+.org-node.main {
+    background: rgba(255, 215, 0, 0.2);
+    border-width: 3px;
+    color: #1a4766;
+}
+
+.org-node:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .org-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    .org-node {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+
+    
+    .org-row::after {
+    display: none;
+}
+    
+    .vertical-chain {
+        width: 100%;
+        align-items: center;
+    }
+    
+    
+       .modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 999; /* Ниже чем у контента */
+  cursor: pointer;
+}
+        #lang-toggle:checked ~ .ru { display: none; }
+#lang-toggle:checked ~ .kk { display: block; }
+     /* Добавленные стили для переключения языка */
+        .lang-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .lang-btn {
+            background: rgba(255,215,0,0.2);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255,215,0,0.3);
+        }
+
+        /* Скрываем казахскую версию по умолчанию */
+        .ru { display: none; }
+        
+        /* Правильные селекторы для переключения */
+        #lang-toggle:checked ~ .kk { display: none; }
+        #lang-toggle:checked ~ .ru { display: block; }
+
+        /* Остальные оригинальные стили */
+        .modal-toggle {
+            display: none;
+        }
+        /* ... (все остальные стили из исходного файла) ... */
+        .modal-toggle {
+  display: none;
+}
+
+.modal-toggle:checked + .modal {
+  display: flex;
+}
+
+  .modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: #0d2b3d;
+  padding: 20px;
+  color: white;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh; 
+  overflow-y: auto; /* Важно для прокрутки */
+  position: relative;
+  z-index: 1001;
+  border-radius: 10px;
+  border: 1px solid #ffd700;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ffd700;
+}
+
+
+
+        body {
+            font-family: 'Calibri', sans-serif;
+            margin: 0;
+            background: linear-gradient(#1a4766, #0d2b3d);
+            color: white;
+            line-height: 1.6;
+        }
+        .slide1 {
+            .slide1 {
+    min-height: 100vh;
+    padding: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Вертикальное центрирование */
+    align-items: center; /* Горизонтальное центрирование */
+    border-bottom: 2px solid #ffd70033;
+    text-align: center; /* Центрирование текста */
+    margin: 0 auto; /* На случай, если есть ограничения по ширине */
+    width: 100%; /* Занимает всю доступную ширину */
+}
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 40px 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 2px solid #ffd70033;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0 0 30px 0;
+            color: #ffd700;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #ffd700;
+            border-left: 4px solid #ffd700;
+            padding-left: 15px;
+            margin: 30px 0;
+        }
+         
+        h3 {
+            color:#ffd700; 
+            margin-top:20px;
+        }    
+        .content-block {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            width: 3px;
+            height: 100%;
+            background: #ffd700;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-left: 60px;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd70033;
+            border-radius: 8px;
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: -85px;
+            top: 0;
+            font-size: 1.5em;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .stations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .station {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        li::before {
+            content: "•";
+            color: #ffd700;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.stat-item {
+    background: rgba(255, 215, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #ffd70033;
+}
+
+.stat-item h3 {
+    font-size: 2em;
+    color: #ffd700;
+    margin: 0 0 10px 0;
+}
+<style>
+.etapy-section {
+    position: relative;
+    padding: 50px 0;
+}
+
+.etapy-timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.etapy-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #ffd700 0%, rgba(255,215,0,0) 100%);
+    transform: translateX(-50%);
+    animation: line-grow 2s ease-out forwards;
+}
+
+.etapy-item {
+    position: relative;
+    width: 45%;
+    margin: 80px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.etapy-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.etapy-item:nth-child(odd) {
+    left: 5%;
+    text-align: right;
+}
+
+.etapy-item:nth-child(even) {
+    left: 55%;
+}
+
+.etapy-card {
+    background: rgba(0,0,0,0.4);
+    padding: 30px;
+    border-radius: 15px;
+    position: relative;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,215,0,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.etapy-card:hover {
+    transform: translateY(-10px);
+}
+
+.etapy-year {
+    font-size: 2.5em;
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255,215,0,0.5);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.etapy-year::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #1a4766;
+    border: 3px solid #ffd700;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.etapy-item:nth-child(odd) .etapy-year::after {
+    right: -60px;
+}
+
+.etapy-item:nth-child(even) .etapy-year::after {
+    left: -60px;
+}
+
+@keyframes line-grow {
+    from { height: 0 }
+    to { height: 100% }
+}
+
+</style>
+</head>
+<body>
+   <input type="checkbox" id="lang-toggle" class="modal-toggle">
+    <label for="lang-toggle" class="lang-switch">
+        <span class="lang-btn">Қаз/Рус</span>
+    </label>
+
+    <!-- Русская версия -->
+    <div class="ru">
+        <!-- Весь русский контент -->
+        <section class="slide1">
+            <h1>Костанайская дистанция электроснабжения</h1>
+        </section>
+        <!-- ... остальной русский контент ... -->
+    </div>
+
+    <!-- Казахская версия -->
+    <div class="kk">
+        <!-- Весь казахский контент -->
+        <section class="slide1">
+            <h1>Қостанай электрмен жабдықтау дистанциясы</h1>
+        </section>
+        <!-- ... остальной казахский контент ... -->
+    </div>
+
+    <!-- Слайд 2: О нас -->
+    <div class="ru">
+    <section class="slide">
+        <h2>1. О НАС</h2>
+        <div class="content-block">
+            <p>Костанайская дистанция электроснабжения обеспечивает бесперебойное электроснабжение объектов железнодорожного транспорта на территории обслуживания.</p>
+            <p>Основная задача - поддержание и развитие инфраструктуры контактной сети, трансформаторных подстанций, линий электропередач и др.</p>
+        </div>
+    </section>
+    </div>
+    <div class="kk">
+        <section class="slide">
+            <h2>1. Біз туралы</h2>
+            <div class="content-block">
+                <p>Қостанай электрмен жабдықтау дистанциясы қызмет көрсету аумағында теміржол көлігі нысандарының толассыз электрмен жабдықталуын қамтамасыз етеді</p>
+                <p>Негізгі мақсаты – түйіспелік  желісі, трансформаторлы қосалқы станциялары, электр берілісі желілерінің инфрақұрылымын дамыту және сақтау. </p>
+            </div>
+        </section>
+        </div>
+
+    <!-- Слайд 3: Основные функции -->
+    <div class="ru">
+    <section class="slide">
+        <h2>2. Основные функции</h2>
+        <div class="content-block">
+            <ul>
+                <li>Обслуживание контактной сети и тяговых подстанций</li>
+                <li>Ремонт и профилактика оборудования</li>
+                <li>Энергетическая безопасность и надежность поставок</li>
+                <li>Подержка бесперебойной работы железнодорожного транспорта</li>
+            </ul>
+        </div>
+    </section>
+    </div>
+    <div class="kk">
+        <section class="slide">
+            <h2>2. НЕГІЗГІ АТҚАРЫМДАРЫ</h2>
+            <div class="content-block">
+                <ul>
+                    <li>Түйіспелік желі мен тартымдық қосалқы станциялардың күтімі</li>
+                    <li>Жабдықты жөндеу және алдын алу жұмыстары</li>
+                    <li>Энергетиқалық кауіпсіздік және жеткізілім сенімділігі</li>
+                    <li>Теміржол көлігінің толассыз жұмысын ұстану</li>
+                </ul>
+            </div>
+        </section>
+        </div>
+
+    <!-- Слайд 4: История -->
+    <div class="ru">
+    <section class="slide">
+        <h2>3. Историческая летопись</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">1954</div>
+                <p>С образованием целинных земель на станции Костанай была создана энергоснабжающая организация «Электростанция» для освещения железнодорожных станций и перегонов</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1960</div>
+                <p>«Электростанция» преобразована в Костанайский участок электроснабжения, включивший три региона: Костанайский, Тобольский, Кушмурунский.</p>
+            </div>
+            <!-- Добавить остальные годы -->
+        </div>
+    </section>
+    </div>
+    <div class="kk">
+        <section class="slide">
+            <h2>3. ТАРИХИ  ЖЫЛНАМА</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1954</div>
+                    <p>Тың жерлердің пайда болуына байланысты теміржол станциялар мен аралықтарды жарықтандыру үшін Қостанай станциясында «Электр станциясы» атты энергиямен жабдықтау ұйымы құрылды.
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1960</div>
+                    <p>«Электр станциясы» Қостанай, Тобыл, Құсмұрын үш аймақтан құралған Қостанай энергиямен жабдықтау телімі болып қайта құрылды.</p>
+                </div>
+                <!-- Добавить остальные годы -->
+            </div>
+        </section>
+        </div>
+        <div class="ru">
+    <section class="slide etapy-section">
+        <h2>Этапы электрификации</h2>
+        <div class="etapy-timeline">
+            <!-- 1966 -->
+            <div class="etapy-item visible">
+                <div class="etapy-card">
+                    <div class="etapy-year">1966</div>
+                    <p>Завершена электрификация участка<br>Тобол-Железорудная</p>
+                </div>
+            </div>
+    
+            <!-- 1969 -->
+            <div class="etapy-item visible">
+                <div class="etapy-card">
+                    <div class="etapy-year">1969</div>
+                    <p>Электрификация участка Тобол-Есиль<br>Созданы самостоятельные участки<br>Костанайский и Кушмурунский</p>
+                </div>
+            </div>
+    
+            <!-- 1988 -->
+            <div class="etapy-item visible">
+                <div class="etapy-card">
+                    <div class="etapy-year">1988</div>
+                    <p>Преобразование участков<br>в дистанции электроснабжения</p>
+                </div>
+            </div>
+        </div>
+    </section>
+        </div>
+        <div class="kk">
+            <section class="slide etapy-section">
+                <h2>Электрлендіру кезендері</h2>
+                <div class="etapy-timeline">
+                    <!-- 1966 -->
+                    <div class="etapy-item visible">
+                        <div class="etapy-card">
+                            <div class="etapy-year">1966</div>
+                            <p>Тобыл – Железорудная<br>телімін электрлендіру аяқталды.</p>
+                        </div>
+                    </div>
+            
+                    <!-- 1969 -->
+                    <div class="etapy-item visible">
+                        <div class="etapy-card">
+                            <div class="etapy-year">1969</div>
+                            <p>Тобыл – Есіл телімін электрлендіру аяқталды.<br>Қостанай және Құсмұрын<br>дара телімдері құрылды</p>
+                        </div>
+                    </div>
+            
+                    <!-- 1988 -->
+                    <div class="etapy-item visible">
+                        <div class="etapy-card">
+                            <div class="etapy-year">1988</div>
+                            <p>Телімдер электрмен жабдықтау<br>дистанциялары болып қайта құрылды</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+                </div>
+         <div class="ru">
+    <section class="slide">
+        <h2>Развитие и интеграция</h2>
+        <div class="content-block">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1999</div>
+                    <p>Кушмурунская дистанция электроснабжения включена в состав Костанайской</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2002</div>
+                    <p>Передан участок Есиль-Аркалык</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2004</div>
+                    <p>Введен участок Арыстансор - Айтеке би (протяженность 281,86 км)</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2006</div>
+                    <p>Участок Есиль-Аркалык передан Атбасарской дистанции электроснабжения</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2011</div>
+                    <p>Принят участок Аксу-Тобол и объекты на станциях Баталы-Кара-оба</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2013</div>
+                    <p>Электрификация участка Костанай-Железорудная</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2017</div>
+                    <p>Переданы участки Шубаркуль-Терисаккан, Есиль-Аркалык, Аркалык, Аркалык-Терисаккан с соотвествующим персоналом и объектами</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2019</div>
+                    <p>Разделение на два самостоятельных участка энергоснабжения Костанайский и Кушмурунский</p>
+                </div>
+            </div>
+        </div>
+    </section>
+         </div>
+     <div class="kk">
+    <section class="slide">
+        <h2>Дамуы мен бірігуі</h2>
+        <div class="content-block">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1999</div>
+                    <p>Құсмұрын электрмен жабдықтау дистанциясы Қостанай дистанциясының құрамына қосылды.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2002</div>
+                    <p>Есіл – Арқалық телімі берілді</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2004</div>
+                    <p>Арыстансор – Әйтеке би телімі енгізілді (ұзақтығы 281,86 км)</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2006</div>
+                    <p>Есіл – Арқалық телімі Атбасар электрмен жабдықтау дистанциясына берілді</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2011</div>
+                    <p>Ақсу – Тобыл телімі және Баталы – Қара-Оба станцияларындағы нысандар қабылданды</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2013</div>
+                    <p>Қостанай – Железорудная телімін электрлендіру</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2017</div>
+                    <p>Шұбаркөл–Терісаққан, Есіл-Арқалық, Арқалық, Арқалық-Терісаққан телімдері тиісті персоналымен және нысандарымен қоса берілді</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2019</div>
+                    <p> Қостанай және Құсмұрын екі дара телімдерге бөлінуі</p>
+                </div>
+            </div>
+        </div>
+    </section>
+         </div>
+         
+<div class="ru">
+    <section class="slide">
+        <h2>Сегодня</h2>
+        <ul>Костанайская дистанция электроснабжения обеспечивает энергоснабжение железнодорожной инфраструктуры, располагает:</ul>
+        <div class="content-block">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>6</h3>
+                    <p>тяговых подстанций</p>
+                </div>
+                <div class="stat-item">
+                    <h3>6</h3>
+                    <p>районов контактной сети</p>
+                </div>
+                <div class="stat-item">
+                    <h3>3</h3>
+                    <p>района электроснабжения</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1</h3>
+                    <p>ремонтно-ревизионный участок</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1</h3>
+                    <p>энергодиспетчерская группа</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1</h3>
+                    <p>механическая мастерская</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="kk">
+    <section class="slide">
+        <h2>Бүгінгі таңда</h2>
+        <ul>Қостанай электрмен жабдықтау дистанциясы теміржол инфрақұрылымын энергиямен жабдықталуын қамтамасыз етеді, оның құрамында:</ul>
+        <div class="content-block">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>6</h3>
+                    <p>тартымдық қосалқы станциясы</p>
+                </div>
+                <div class="stat-item">
+                    <h3>6</h3>
+                    <p>түйіспелік желі ауданы </p>
+                </div>
+                <div class="stat-item">
+                    <h3>3</h3>
+                    <p>электрмен жабдықтау ауданы </p>
+                </div>
+                <div class="stat-item">
+                    <h3>1</h3>
+                    <p>жөндеу-ревизиялық телімі</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1</h3>
+                    <p>энергодиспетчерлік тобы </p>
+                </div>
+                <div class="stat-item">
+                    <h3>1</h3>
+                    <p>механикалық шеберханасы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+    <!-- Слайд 6: Станции -->
+    <div class="ru">
+    <section class="slide">
+        <h2> Станции</h2>
+        <div class="content-block">
+            <ul>Дистанция включает в себя следующие станции, обслуживающие ключевые участки железной дороги, на каждой из которых расположены производственные участки: 
+                районы контактной сети (РКС), районы электроснаюжения (ЭЧС), тяговые подстанции (ЭЧЭ). Эти подразделения обеспечивают надежное электроснабжение объектов
+                железнодорожной инфраструктуры, контроль технического состояния оборудования и своевременное выполнение ремонтных и профилактических работ.
+            </ul>
+        </div>
+        <div class="stations-grid">
+            <label class="station station-label" for="station-kostanay">Костанай</label>
+
+            <label class="station station-label" for="station-zhelezorudnaya">Железорудная</label>
+            <label class="station station-label" for="station-tobol">Тобол</label>
+            <label class="station station-label" for="station-apanovka">Апановка</label>
+            <label class="station station-label" for="station-batali">Баталы</label>
+            <label class="station station-label" for="station-za">Зааятская</label>
+            <label class="station station-label" for="station-kara">Кара-Оба</label>
+            <label class="station station-label" for="station-arka">Арка</label>
+        </div>
+    </section>
+    </div>
+    <div class="kk">
+    <section class="slide">
+        <h2>Станциялар</h2>
+            <div class="content-block">
+                <ul>Дистанция құрамына темір жолдың түйінді телімдеріне қызмет етуші төмендегі станциялар кіреді, олардың әрқайсысында өндірістік телімдер орналасқан: түйспелік желі аудандары (ТЖА), электрмен жабдықтау аудандары (ЭЖА), тартымдық қосалқы станциялары (ТҚС). 
+                    Осы бөлімшелер теміржол инфрақұрылымы нысандарының сенімді электрмен жабдықталуын, жабдықтың техникалық күйіне бақылау жасауды, сондай-ақ жөндеу және алдын алу жұмыстарының уақытылы орындалуын қамтамасыз етеді.                    
+                </ul>
+            </div>
+            <div class="stations-grid">
+                <label class="station" for="modal-kostanay-kz">Қостанай</label>
+    
+               <label class="station" for="modal-zhelezorudnaya-kz">Железорудная</label>
+                <label class="station" for="modal-tobol-kz">Тобыл</label>
+                <label class="station" for="modal-apanovka-kz">Апановка</label>
+                <label class="station" for="modal-batali-kz">Баталы</label>
+                <label class="station" for="modal-za-kz">Зааятская</label>
+                <label class="station" for="modal-kara-kz">Қара-Оба</label>
+                <label class="station" for="modal-arka-kz">Арқа</label>
+            </div>
+        </section>
+        </div>
+    <!-- Кнопка для открытия модального окна Костанай -->
+      <div class="ru">
+<label for="station-kostanay" class="btn"></label>
+
+<!-- Модальное окно Костанай -->
+<input type="checkbox" id="station-kostanay" class="modal-toggle">
+<div class="modal">
+  <div class="modal-content">
+    <label for="station-kostanay" class="close">x</label>
+    <h3>Станция Костанай</h3>
+    <p>
+      • Район электроснабжения<br>
+      Район электроснабжения ст. Костанай (ЭЧС-1) обеспечивает электроснабжение объектов железнодорожного транспорта и инфраструктуры, бесперебойной работы устройств сигнализации, централизации, блокировки и связи, обеспечивающих электроснабжение объектов устройств магистральной железнодорожной сети по 1 категории надежности.<br>
+      Участки обслуживания: Костанай – Алкау – Шоккарагай – Куншаш – Карагалинская – Басагаш – Бармак – Сарыколь – Дудаковка – Коскуль – всего 208 км; Костанай – Озерная – Успеновка – Джаркуль – Пешковка – Тогузак – Селекционная – Медет – Каерак – всего 123 км; Костанай – Темир-Булак – 26 км. Также осуществляется электроснабжение нетранспортных потребителей.<br>
+      Технические средства: Эксплуатационная длина ВЛ – 110 кВ составляет 6,8 км, ВЛ – 10 кВ Костанай-Новоишимка – АБ 214,1, ПЭС-214,1, Костанай-Золотая-Сопка АБ – 155,2, ПЭС – 166,97 км, Костанай-Темир-Булак АБ 26 км, ПЭС - 26 км.<br>
+      ВЛ - 0,4 кВ протяженностью 55,445 км<br>
+      ЦРП – 8 шт., ТП, КТП – 83 шт.<br>
+      Автомоторельсовый транспорт: автомотриса АРВ-1 № 269 – 1 шт., автомашины 8 ед., трактор – 1 ед., Шоккарагай ГАЗ-33073, Тогузак ГАЗ-53, Джаркуль ГАЗ-52-01, ГАЗ-5212, Тогузак трактор Т-40 АМ, Костанай УАЗ 39094, ГАЗ-66.
+    </p>
+    <p>
+      • Район контактной сети:<br>
+      Район контактной сети (РКС-1) обеспечивает электроснабжение объектов железнодорожного транспорта и инфраструктуры, бесперебойной работы устройств сигнализации, централизации, блокировки и связи, обеспечивающих электроснабжение объектов устройств магистральной железнодорожной сети по 1 категории надежности.<br>
+      Участки обслуживания: Костанай-Северный, Костанай-Главный, Костанай-Южный, Темир-Булак (исключительно).<br>
+      Технические средства: Эксплуатационная длина контактной сети РКС Костанай-Северный составляет 30,8 км, развернутая длина – 80,8 км, в обслуживании: мачтовых разъединителей – 26 шт., секционных изоляторов – 34 шт., воздушных стрелок - 48 шт.<br>
+      Автомоторельсовый транспорт: автомотриса 1-АДМ-1,3 № 1367 – 1 шт., автомашины – 1 шт.
+    </p>
+    <p>
+      • Тяговая подстанция<br>
+      Тяговая подстанция (ЭЧЭ-71) выполняет преобразование и распределение электроэнергии для питания тяговых электровозов и объектов инфраструктуры. На тяговой подстанции Костанай Северная (ЭЧЭ-71) обслуживаются ОРУ-110кВ, КРУН-10 кВ, ЗРУ-27,5, трансформаторы 110 кВ марки ТДТНЖ-25000/110-У1– 2 шт., также находятся дизель генератор марки ДГА-AKSA, аккумуляторные батареи GFM 12-120C -19 шт.
+    </p>
+    <p>
+      • Ремонтно-ревизионный участок<br>
+      Костанайский ремонтно-ревизионный участок (РРУ) обслуживает 3 поста секционирования, тяговые подстанции, районы электроснабжения: отдел телемеханики занимается обеспечением дистанционного управления с объектами электроснабжения (мачтовые разъединители); отдел контрольно-измерительных приборов занимается поверкой и ремонтом средств измерений, сменой приборов учета электрической энергии; цех масляного хозяйства обслуживает маслонаполненное оборудование (трансформаторы), производят ремонт трансформаторов и замену трансформаторного масла; отдел релейной защиты и автоматики проводит профилактическое и частичное восстановление, профилактический контроль и опробование релейной защиты; высоковольтно-испытательная лаборатория проводит профилактическое испытание силовых, измерительных трансформаторов, а также испытания разрядников, масляных выключателей, измерения сопротивлений контура заземления, замер сопротивления петля фаза – ноль и испытания защитных средств, также имеет 1 передвижную автолабораторию, 1 автомашину.
+    </p>
+    <p>
+      • Механические мастерские<br>
+      Механические мастерские обеспечивают техническое обслуживание транспортных средств и моторельсового транспорта, хранение ТМЦ, распределяют горюче-смазочные материалы и товарно-материальные ценности по подразделениям дистанции, производят плотницкие, сварочные, кузнечные работы. В цехе числится 5 единиц транспортных средств.
+    </p>
+  </div>
+</div>
+</div>
+
+<div class="kk">
+    <input type="checkbox" id="modal-kostanay-kz" class="modal-toggle">
+    <div class="modal">
+        <div class="modal-content">
+            <label for="modal-kostanay-kz" class="close">×</label>
+            <!-- казахский контент -->
+             <h3>Қостанай станциясы</h3>
+            
+            <p>
+                <strong>· Электрмен жабдықтау ауданы</strong><br>
+                Қостанай ст. электрмен жабдықтау ауданы (ЭЖА-1) теміржол көлігі мен инфрақұрылым нысандарының электрмен жабдықталуын, магистральдық теміржол желісі құрылғыларының нысандарын 1 сенімділік санаты бойынша қамтамасыз етуші белгі беру, орталықтандыру, бұғаттау және байланыс құрылғыларының толассыз жұмысын қамтамасыз етеді.
+            </p>
+
+            <p>
+                <strong>Қызмет көрсету телімдері:</strong><br>
+                Қостанай – Алқау – Шоққарағай – Күншаш – Қарағалы – Басағаш – Бармақ – Сарыкөл – Дудаковка – Қоскөл – барлығы 208 км;<br>
+                Қостанай – Озерная – Успеновка – Жаркөл – Пешковка – Тоғызақ – Селекционная – Медет – Қаерақ – барлығы 123 км;<br>
+                Қостанай – Темір-Бұлақ – 26 км.<br>
+                Сондай-ақ көліктік емес тұтынушылардың электрмен жабдықталуын жүргізеді.
+            </p>
+
+            <p>
+                <strong>Техникалық құралдар:</strong><br>
+                110 кВ ӘЖ 6,8 км<br>
+                10 кВ ӘЖ Қостанай-Жаңа Есіл – АБ 214,1, ПЭС-214,1,<br>
+                Қостанай-Золотая-Сопка АБ – 155,2, ПЭС – 166,97 км,<br>
+                Қостанай-Темір-Бұлақ АБ 26 км, ПЭС – 26 км<br>
+                0,4 кВ ӘЖ ұзындығы 55,445 км<br>
+                ОБП – 8 дана, ТҚ, ЖТҚ – 83 дана.
+            </p>
+
+            <p>
+                <strong>Автомоторельс көлігі:</strong><br>
+                Автомотриса АРВ-1 № 269 – 1 дана,<br>
+                Автомашиналар 8 бірлік,<br>
+                Трактор – 1 бірлік,<br>
+                Шоққарағай ГАЗ-33073,<br>
+                Тоғызақ ГАЗ-53, Жаркөл ГАЗ-52-01,<br>
+                ГАЗ-5212, Тоғызақ трактор Т-40 АМ,<br>
+                Қостанай УАЗ 39094, ГАЗ-66.
+            </p>
+             <p>
+                <strong>· Түйіспелік желі ауданы:</strong><br>
+                Түйіспелік желі ауданы (ТЖА-1) теміржол көлігі мен инфрақұрылым нысандарының электрмен жабдықталуын, магистральдық теміржол желісі құрылғыларының нысандарын 1 сенімділік санаты бойынша қамтамасыз етуші белгі беру, орталықтандыру, бұғаттау және байланыс құрылғыларының толассыз жұмысын қамтамасыз етеді.
+            </p>
+
+            <p>
+                <strong>Қызмет көрсету телімдері:</strong><br>
+                Қостанай-Солтүстік Қостанай бас станциясы - Қостанай-Оңтүстік - Темір-Бұлақ (алынып тасталған).
+            </p>
+
+            <p>
+                <strong>Техникалық құралдар:</strong><br>
+                Қостанай-Солтүстік ТЖА түйіспелік желісінің пайдалану ұзындығы 30,8 км құрайды,<br>
+                жазылмалы ұзындығы – 80,8 км,<br>
+                мачталық ажыратқыштар – 26 дана,<br>
+                секциялық оқшаулағыштар – 34 дана,<br>
+                әуе стрелкалары - 48 дана жабдыққа қызмет көрсетеді.
+            </p>
+
+            <p>
+                <strong>Автомоторельс көлігі:</strong><br>
+                1-АДМ-1,3 № 1367 автомотрисасы – 1 дана,<br>
+                автомашиналар – 1 дана.
+            </p>
+
+            <p>
+                <strong>· Тартымдық қосалқы станциясы</strong><br>
+                Тартымдық қосалқы станциясы (ТҚС-71) тартымдық электровоздардың және инфрақұрылым нысандарының қоректенуі үшін электр энергияны қайта жаңартып, таратады. Қостанай-Солтүстік тартымдық қосалқы станциясында (ТҚС-71):<br>
+                110 кВ -АТҚ, 10 кВ СЖТҚ, 27,5 ЖТҚ,<br>
+                ТДТНЖ-25000/110-У1 маркалы 110 кВ трансформаторлары - 2 дана,<br>
+                ДГА -AKSA маркалы дизель генераторы,<br>
+                19 дана GFM 12-120C аккумуляторлық батареялары бар.
+            </p>
+
+            <p>
+                <strong>· Жөндеу-ревизиялық телімі</strong><br>
+                Қостанай жөндеу-ревизиялық телімі (ЖРТ):<br>
+                3 секциялау постысында қызмет көрсетеді,<br>
+                телемеханика бөлімі - электрмен жабдықтау нысандарымен (мачталық ажыратқыштар) дистанциялық басқаруды қамтамасыз етеді,<br>
+                бақылау-өлшеуіш аспаптар бөлімі - өлшеу құралдарды тексеру және жөндеу,<br>
+                май шаруашылығы цехы - трансформаторларды жөндеу және майды ауыстыру,<br>
+                релелік қорғаныс бөлімі - алдын алу жұмыстарын жүргізеді,<br>
+                жоғары вольтті зертхана - разрядтауыштар мен май ажыратқыштарын сынау.
+            </p>
+
+            <p>
+                <strong>· Механикалық шеберхана</strong><br>
+                Механикалық шеберханалар:<br>
+                көлік құралдары мен моторельс көлігінің техникалық қызметін қамтамасыз етеді,<br>
+                ТМҚ сақтау мен бөлу жұмыстарын жүргізеді,<br>
+                ағаш ұсташы, дәнекерлеу және теміршілік жұмыстарын орындайды,<br>
+                цехта 5 бірлік көлік құралдары бар.
+            </p>
+
+        </div>
+        <label for="modal-kostanay-kz" class="modal-overlay"></label>
+    </div>
+</div>
+<div class="ru">
+<label for="station-zhelezorudnaya" class="btn"></label>
+<input type="checkbox" id="station-zhelezorudnaya" class="modal-toggle">
+<div class="modal">
+  <div class="modal-content">
+    <label for="station-zhelezorudnaya" class="close">x</label>
+    <h3>Станция Железорудная</h3>
+    <p>
+      • Район контактной сети:<br>
+      Район контактной сети (РКС-2) обеспечивает электроснабжение объектов железнодорожного транспорта и инфраструктуры, бесперебойной работы устройств сигнализации, централизации, блокировки и связи, обеспечивающих электроснабжение объектов устройств магистральной железнодорожной сети по 1 категории надежности. Также осуществляется электроснабжение нетранспортных потребителей.
+
+    <br>
+      Участки обслуживания: Темир-Булак – Железорудная – Каратомары – Воронинская – Увальненская (исключительно).
+    <br>
+      Технические средства: Эксплуатационная длина контактной сети РКС Железорудная составляет 55,6 км, развернутая длина – 81,78 км, в обслуживании: разъединителей – 82 шт., секционных изоляторов – 32 шт., воздушных стрелок - 43 шт., ТП-2 шт, КТП – 18 шт.
+    
+    <br>
+      Автомоторельсовый транспорт: автомотриса АДМ № 042 – 1 шт., АДМ № 106 – 1 шт., автомашины – 1 шт.
+    </p>
+    <p>
+      • Тяговая подстанция<br>
+      На тяговой подстанции Железорудная (ЭЧЭ-1) обслуживаются ОРУ-110кВ, 27,5 кВ, КРУН-10 кВ, КРУН-6 кВ, трансформаторы 110 кВ марки ТДНГЭ-20 000-110/27,5/10 – 1 шт., ТДТНГЭ-25000-110/27,5/6 – 1 шт., ТМ-6300-6/10 кВ. Также находятся дизель генератор марки ДГА -48 и аккумуляторная батарея OPzS-800-1 шт.
+    </p>
+  </div>
+</div>
+</div>
+<!-- В разделе с классом .kk (казахская версия) -->
+<div class="kk">
+    <input type="checkbox" id="modal-zhelezorudnaya-kz" class="modal-toggle">
+    <div class="modal">
+        <div class="modal-content">
+            <label for="modal-zhelezorudnaya-kz" class="close">×</label>
+            <h3>Железорудная станциясы</h3>
+            <p>
+                <strong>· Түйіспелік желі ауданы:</strong><br>
+                Түйіспелік желі ауданы (ТЖА-2) теміржол көлігі мен инфрақұрылым нысандарының электрмен жабдықталуын, магистральдық теміржол желісі құрылғыларының нысандарын 1 сенімділік санаты бойынша қамтамасыз етуші белгі беру, орталықтандыру, бұғаттау және байланыс құрылғыларының толассыз жұмысын қамтамасыз етеді. Сондай-ақ көліктік емес тұтынушылардың электрмен жабдықталуы жүргізіледі.
+            </p>
+            <p>
+                <strong>Қызмет көрсету телімдері:</strong><br>
+                Темір-Бұлақ – Железорудная – Қаратомар – Воронинская – Увальненская (алынып тасталған).
+            </p>
+            <p>
+                <strong>Техникалық құралдар:</strong><br>
+                Железорудная ТЖА түйіспелік желісінің пайдалану ұзындығы 55,6 км, жазылмалы ұзындығы - 81,78 км. құрайды, пайдалануда: ажыратқыштар - 82 дана, секциялық оқшаулағыш - 32 дана, әуе стрелкалар - 43 дана, ТҚ - 2 дана, ЖТҚ - 18 дана.
+            </p>
+            <p>
+                <strong>Автомоторельс көлігі:</strong><br>
+                № 042 АДМ автомотрисасы - 1 дана., № 106 АДМ– 1 дана., автомашиналар – 1 дана.
+            </p>
+            <p>
+                <strong>· Тартымдық қосалқы станциясы</strong><br>
+                Железорудная тартымдық қосалқы станциясында (ТҚС-1) 110кВ, 27,5 кВ 110 кВ -АТҚ, 10 кВ СЖТҚ, 6 кВ СЖТҚ, ТДНГЭ-20000-110/27,5/10 маркалы 110 кВ трансформаторы - 1 дана, ТДТНГЭ -25000-110/27,5/6 маркалы - 1 дана, ТМ-6300-6/10 кВ жабдыққа қызмет көрсетеді, сонымен қатар ДГА-48 маркалы дизель генератор мен 1 дана OPzS-800 аккумуляторлық батарея бар.
+            </p>
+        </div>
+        <label for="modal-zhelezorudnaya-kz" class="modal-overlay"></label>
+    </div>
+</div>
+<div class="ru">
+<label for="station-tobol" class="btn"></label>
+<input type="checkbox" id="station-tobol" class="modal-toggle">
+<div class="modal">
+  <div class="modal-content">
+    <label for="station-tobol" class="close">x</label>
+    <h3>Станция Тобол</h3>
+    <p>
+        •	Район электроснабжения<br>
+        Район электроснабжения ст. Тобол (ЭЧС-2) обеспечивает электроснабжение объектов железнодорожного транспорта и инфраструктуры, бесперебойной работы устройств сигнализации, централизации, блокировки и связи, обеспечивающих электроснабжение объектов устройств магистральной железнодорожной сети по 1 категории надежности. Также осуществляется электроснабжение нетранспортных потребителей. 
+        <br>Участки обслуживания: Тобол – Перелески – Денисовка – Джетыгора; Майлино – Лисаковск – Арыстансор (искл.). 
+        <br>Технические средства: Эксплуатационная длина
+        <br> ВЛ – 10 кВ Тобол-Джетыгора – 108 км, Тобол-Арыстансор  АБ 64,793 км ПЭ -64,793 км  
+        <br>ВЛ – 0,4 кВ -  60,347 км, в обслуживании: 
+        <br>ЦРП – 2 шт., ТП, КТП – 48 шт.
+        <br>Автомоторельсовый транспорт: автомашины – 3 шт ЗИЛ ММЗ 554, УАЗ 390942.
+    </p><p>
+        •	Район контактной сети:
+        <br>Район контактной сети (РКС-3) обеспечивает электроснабжение объектов железнодорожного транспорта и инфраструктуры, бесперебойной работы устройств сигнализации, централизации, блокировки и связи, обеспечивающих электроснабжение объектов устройств магистральной железнодорожной сети по 1 категории надежности.
+        <br>Участки обслуживания: Увальненская – Тобол – однопутный участок, Тобол – Притобольская (искл.)– двухпутный участок, Тобол – Майлино – однопутный участок, Тобол – Баталы (121 км) двухпутный участок, Увальненская – Притобольская (Скоба) – однопутный участок.
+        <br>Технические средства: Эксплуатационная длина контактной сети составляет 64,9 км, развернутая длина – 215,52 км, в обслуживании мачтовых разъединителей – 135 шт., секционных изоляторов – 120 шт., воздушных стрелок - 205 шт. 
+        <br>Автомоторельсовый транспорт: автомотриса АДМ -1322  – 1 шт.,автомобиль специализированный, бригадный  «DONGFENG EQ2120NL6DJ»-1 ед. 
+        </p>
+        
+       <p> •	Тяговая подстанция
+        <br>На тяговой подстанции Тобол (ЭЧЭ-2) обслуживаются ОРУ-110 кВ, 35кВ, 27,5 кВ, РУ-10 кВ, трансформаторы 110 кВ марки ТДТНГЭ-40,5/110/35/27,5 – 1 шт., ТДТНГЭ- 40,500-110/27,5/10 – 1 шт., ТДТНЖ-40000-110/35/27,5 – 1 шт., дизель генератор марки ДГА – 48, аккумуляторная батарея OPzS-800-1 шт. ТДТНГЭ-40000-110/35/27,5 кВ – не исправный.
+       </p>
+  </div>
+</div>
+</div>
+<!-- В разделе с классом .kk (казахская версия) -->
+<div class="kk">
+    <input type="checkbox" id="modal-tobol-kz" class="modal-toggle">
+    <div class="modal">
+        <div class="modal-content">
+            <label for="modal-tobol-kz" class="close">×</label>
+            <h3>Тобыл станциясы</h3>
+            
+            <!-- Электрмен жабдықтау ауданы -->
+            <p>
+                <strong>· Электрмен жабдықтау ауданы</strong><br>
+                Тобыл ст. электрмен жабдықтау ауданы (ЭЖА-2) теміржол көлігі мен инфрақұрылым нысандарының электрмен жабдықталуын, магистральдық теміржол желісі құрылғыларының нысандарын 1 сенімділік санаты бойынша қамтамасыз етуші белгі беру, орталықтандыру, бұғаттау және байланыс құрылғыларының толассыз жұмысын қамтамасыз етеді. Сонымен қатар, көліктік емес тұтынушылардың электрмен жабдықталуын іске асырады.
+            </p>
+            <p>
+                <strong>Қызмет көрсету телімдері:</strong><br>
+                Тобыл – Перелески – Денисовка – Жітіқара; Майлин – Лисаковск – Арыстансор (алынып тасталған).
+            </p>
+            <p>
+                <strong>Техникалық құралдар:</strong><br>
+                Пайдалану ұзындығы<br>
+                10 кВ ӘЖ Тобыл-Жітіқара – 108 км,<br>
+                Тобыл-Арыстансор АБ 64,793 км ПЭ -64,793 км<br>
+                0,4 кВ ӘЖ - 60,347 км,<br>
+                ОБП – 2 дана., ТҚ, ЖТҚ – 48 дана жабдыққа қызмет көрсетеді.
+            </p>
+            <p>
+                <strong>Автомоторельс көлігі:</strong><br>
+                автомашиналар – 3 дана: ЗИЛ ММЗ 554, УАЗ 390942.
+            </p>
+
+            <!-- Түйіспелік желі ауданы -->
+            <p>
+                <strong>· Түйіспелік желі ауданы</strong><br>
+                Түйіспелік желі ауданы (ТЖА-3) теміржол көлігі мен инфрақұрылым нысандарының электрмен жабдықталуын, магистральдық теміржол желісі құрылғыларының нысандарын 1 сенімділік санаты бойынша қамтамасыз етуші белгі беру, орталықтандыру, бұғаттау және байланыс құрылғыларының толассыз жұмысын қамтамасыз етеді.
+            </p>
+            <p>
+                <strong>Қызмет көрсету телімдері:</strong><br>
+                Увальненская – Тобыл – бір жолды телім,<br>
+                Тобыл – Притобольская (алынып тасталған) – екі жолды телім,<br>
+                Тобыл – Майлин – бір жолды телім,<br>
+                Тобыл – Баталы (121 км) екі жолды телім,<br>
+                Увальненская – Притобольская (Қапсырма) – бір жолды телім.
+            </p>
+            <p>
+                <strong>Техникалық құралдар:</strong><br>
+                Түйіспелік желінің пайдалану ұзындығы 64,9 км,<br>
+                жазылмалы ұзындығы – 215,52 км құрайды,<br>
+                мачталық ажыратқыштар - 135 дана,<br>
+                секциялық оқшаулағыштар - 120 дана,<br>
+                әуе стрелкалар - 205 дана жабдыққа қызмет көрсетеді.
+            </p>
+            <p>
+                <strong>Автомоторельс көлігі:</strong><br>
+                АДМ -1322 автомотрисасы – 1 дана,<br>
+                «DONGFENG EQ2120NL6DJ» бригадалық мамандырылған автомобилі - 1 бірлік.
+            </p>
+
+            <!-- Тартымдық қосалқы станциясы -->
+            <p>
+                <strong>· Тартымдық қосалқы станциясы</strong><br>
+                Тобыл тартымдық қосалқы станциясында (ТҚС-2) :<br>
+                110кВ, 35 кВ, 27,5 кВ АТҚ,<br>
+                110 кВ трансформаторлар: ТДТНГЭ-40,5/110/35/27,5 маркалы - 1 дана,<br>
+                ТДТНГЭ -40,500-110/27,5/10 маркалы - 1 дана,<br>
+                ТДТНЖ-40000-110/35/27,5 маркалы - 1 дана,<br>
+                ДГА-48 маркалы дизель генераторы,<br>
+                OPzS-800 аккумуляторлық батарея - 1 дана жабдыққа қызмет көрсетеді,<br>
+                жарамсыз ТДТНГЭ-40000-110/35/27,5 кВ трансформаторы бар.
+            </p>
+        </div>
+        <label for="modal-tobol-kz" class="modal-overlay"></label>
+    </div>
+</div>
+<div class="ru">
+<label for="station-apanovka" class="btn"></label>
+<input type="checkbox" id="station-apanovka" class="modal-toggle">
+<div class="modal">
+  <div class="modal-content">
+    <label for="station-apanovka" class="close">x</label>
+    <h3>Станция Апановка</h3>
+    <p>
+        Район контактной сети:
+        <br>Район контактной сети (РКС-4) обеспечивает электроснабжение объектов железнодорожного транспорта и инфраструктуры, бесперебойной работы устройств сигнализации, централизации, блокировки и связи, обеспечивающих электроснабжение объектов устройств магистральной железнодорожной сети по 1 категории надежности.
+        <br>Участки обслуживания: Притобоьская – Апановка – Казан-Басы (искл.).
+        <br>Эксплуатационная длина контактной сети составляет 62,5 км, развернутая длина – 157,7 км, в обслуживании: разъединителей – 59 шт., секционных изоляторов – 16 шт., воздушных стрелок - 26 шт.
+        <br>Автомоторельсовый транспорт: автомотриса АДМ –№0005 – 1 ед., автомашины – 2 шт.
+    </p>
+    <p>
+        •	Тяговая подстанция
+       <br> На тяговой подстанции Апановка (ЭЧЭ-3) обслуживаются ОРУ-220 кВ, 35 кВ, 27, 5кВ, КРУН-10 кВ, трансформаторы 220 кВ марки ТДТНГ-40000-220/35/27,5 – 1 шт., ТДТН- 40000-220/35/27,5 – 1 шт., дизель генератор ДГА-48 и аккумуляторная батарея OPzS-800 – 1 шт.
+    </p>    
+  </div>
+</div>
+</div>
+<!-- В разделе с классом .kk (казахская версия) -->
+<div class="kk">
+    <input type="checkbox" id="modal-apanovka-kz" class="modal-toggle">
+    <div class="modal">
+        <div class="modal-content">
+            <label for="modal-apanovka-kz" class="close">×</label>
+            <h3>Апановка станциясы</h3>
+
+            <!-- Түйіспелік желі ауданы -->
+            <p>
+                <strong>· Түйіспелік желі ауданы</strong><br>
+                Түйіспелік желі ауданы (ТЖА-4) теміржол көлігі мен инфрақұрылым нысандарының электрмен жабдықталуын, магистральдық теміржол желісі құрылғыларының нысандарын 1 сенімділік санаты бойынша қамтамасыз етуші белгі беру, орталықтандыру, бұғаттау және байланыс құрылғыларының толассыз жұмысын қамтамасыз етеді.
+            </p>
+            <p>
+                <strong>Қызмет көрсету телімдері:</strong><br>
+                Притобольская – Апановка – Қазан-Басы (алынып тасталған).
+            </p>
+            <p>
+                <strong>Техникалық құралдар:</strong><br>
+                Түйіспелік желінің пайдалану ұзындығы 62,5 км., жазылмалы ұзындығы - 157,7 км. құрайды,<br>
+                ажыратқыштар – 59 дана, секциялық оқшаулағыштар – 16 дана, әуе стрелкалар - 26 дана жабдыққа қызмет көрсетеді.
+            </p>
+            <p>
+                <strong>Автомоторельс көлігі:</strong><br>
+                №0005 АДМ автомотрисасы – 1 бірлік., автомашиналар – 2 дана.
+            </p>
+
+            <!-- Тартымдық қосалқы станциясы -->
+            <p>
+                <strong>· Тартымдық қосалқы станциясы</strong><br>
+                Апановка тартымдық қосалқы станциясында (ТҚС-3):<br>
+                220 кВ, 35 кВ, 27,5 кВ АТҚ,<br>
+                10 кВ ЖТҚС,<br>
+                220 кВ трансформаторлары: ТДТНГ-40000-220/35/27,5 маркалы - 1 дана,<br>
+                ТДТН-40000-220/35/27,5 - 1 дана,<br>
+                ДГА-48 дизель генераторы мен OPzS-800 аккумуляторлық батарея - 1 дана жабдыққа қызмет көрсетеді.
+            </p>
+        </div>
+        <label for="modal-apanovka-kz" class="modal-overlay"></label>
+    </div>
+</div>
+
+<div class="ru">
+<label for="station-batali" class="btn"></label>
+<input type="checkbox" id="station-batali" class="modal-toggle">
+<div class="modal">
+  <div class="modal-content">
+    <label for="station-batali" class="close">x</label>
+    <h3>Станция Баталы</h3>
+    <p>
+        •	Район контактной сети:
+        <br>Район контактной сети (РКС-56) обеспечивает электроснабжение объектов железнодорожного транспорта и инфраструктуры, бесперебойной работы устройств сигнализации, централизации, блокировки и связи, обеспечивающих электроснабжение объектов устройств магистральной железнодорожной сети по 1 категории надежности.
+            <br>Участки обслуживания: 121 км – Баталы – Зааятская.
+            <br>Технические средства: Эксплуатационная длина контактной сети составляет 51,2 км, развернутая длина – 119 км, разъединителей – 78 шт., секционных изоляторов – 10 шт., воздушных стрелок - 17 шт.
+        <br>Автомоторельсовый транспорт: автомотриса АДМ – 1634 – 1 ед., автотранспорт  - 1 ед. 
+    </p>
+    <p>
+•	Тяговая подстанция<br>
+На тяговой подстанции Баталы (ЭЧЭ-70) обслуживаются ОРУ-110 кВ, 35 кВ, 27,5 кВ, РУ-10 кВ, трансформаторы 110 кВ марки  ТДТНГЭ-20/110/35/27,5 – 2 шт., дизель генератор марки ДГА-100 и аккумуляторная батарея OPzS-800 - 1 шт.
+
+    </p>
+  </div>
+</div>
+</div>
+<!-- В разделе с классом .kk (казахская версия) -->
+<div class="kk">
+    <input type="checkbox" id="modal-batali-kz" class="modal-toggle">
+    <div class="modal">
+        <div class="modal-content">
+            <label for="modal-batali-kz" class="close">×</label>
+            <h3>Баталы станциясы</h3>
+
+            <!-- Түйіспелік желі ауданы -->
+            <p>
+                <strong>· Түйіспелік желі ауданы</strong><br>
+                Түйіспелік желі ауданы (ТЖА-56) теміржол көлігі мен инфрақұрылым нысандарының электрмен жабдықталуын, магистральдық теміржол желісі құрылғыларының нысандарын 1 сенімділік санаты бойынша қамтамасыз етуші белгі беру, орталықтандыру, бұғаттау және байланыс құрылғыларының толассыз жұмысын қамтамасыз етеді.
+            </p>
+            <p>
+                <strong>Қызмет көрсету телімдері:</strong><br>
+                121 км – Баталы – Зааятская.
+            </p>
+            <p>
+                <strong>Техникалық құралдар:</strong><br>
+                Түйіспелік желісінің пайдалану ұзындығы 51,2 км., жазылмалы ұзындығы - 119 км. құрайды,<br>
+                ажыратқыштар - 78 дана, секциялық оқшаулағыштар – 10 дана, әуе стрелкалар - 17 дана.
+            </p>
+            <p>
+                <strong>Автомоторельс көлігі:</strong><br>
+                АДМ-1634 автомотрисасы – 1 бірлік., автокөлік – 1 бірлік.
+            </p>
+
+            <!-- Тартымдық қосалқы станциясы -->
+            <p>
+                <strong>· Тартымдық қосалқы станциясы</strong><br>
+                Баталы тартымдық қосалқы станциясы (ЭЧЭ-70):<br>
+                110 кВ, 35 кВ, 27,5 кВ АТҚ,<br>
+                10 кВ ТҚ,<br>
+                ТДТНГЭ-20/110/35/27,5 маркалы 110 кВ трансформаторлар - 2 дана,<br>
+                ДГА-100 маркалы дизель генератор мен OPzS-800 аккумуляторлық батарея - 1 дана жабдыққа қызмет көрсетеді.
+            </p>
+        </div>
+        <label for="modal-batali-kz" class="modal-overlay"></label>
+    </div>
+</div>
+
+<div class="ru">
+<label for="station-za" class="btn"></label>
+<input type="checkbox" id="station-za" class="modal-toggle">
+<div class="modal">
+  <div class="modal-content">
+    <label for="station-za" class="close">x</label>
+    <h3>Станция Зааятская</h3>
+    <p>
+•	Район контактной сети:<br>
+Район контактной сети (РКС-55) обеспечивает электроснабжение объектов железнодорожного транспорта и инфраструктуры, бесперебойной работы устройств сигнализации, централизации, блокировки и связи, обеспечивающих электроснабжение объектов устройств магистральной железнодорожной сети по 1 категории надежности.
+	<br>Участки обслуживания: Заатяская – Кара-Оба – Елимай.
+	<br>Технические средства: Эксплуатационная длина контактной сети составляет 32 км, развернутая длина – 77,7 км, разъединителей – 79 шт., секционных изоляторов – 14 шт., воздушных стрелок - 26 шт.
+<br>Автомоторельсовый транспорт: автомашина ГАЗ-66–1 ед.
+    </p>
+  </div>
+</div>
+</div>
+
+<!-- В разделе с классом .kk (казахская версия) -->
+<div class="kk">
+    <input type="checkbox" id="modal-za-kz" class="modal-toggle">
+    <div class="modal">
+        <div class="modal-content">
+            <label for="modal-za-kz" class="close">×</label>
+            <h3>Зааятская станциясы</h3>
+
+            <!-- Түйіспелік желі ауданы -->
+            <p>
+                <strong>· Түйіспелік желі ауданы:</strong><br>
+                Түйіспелік желі ауданы (ТЖА-55) теміржол көлігі мен инфрақұрылым нысандарының электрмен жабдықталуын, магистральдық теміржол желісі құрылғыларының нысандарын 1 сенімділік санаты бойынша қамтамасыз етуші белгі беру, орталықтандыру, бұғаттау және байланыс құрылғыларының толассыз жұмысын қамтамасыз етеді.
+            </p>
+            <p>
+                <strong>Қызмет көрсету телімдері:</strong><br>
+                Заатяская – Қара-Оба – Елімай.
+            </p>
+            <p>
+                <strong>Техникалық құралдар:</strong><br>
+                Түйіспелік желісінің пайдалану ұзындығы 32 км., жазылмалы ұзындығы - 77,7 км құрайды,<br>
+                ажыратқыштар – 79 дана, секциялық оқшаулағыш – 14 дана, әуе стрелкалар - 26 дана.
+            </p>
+            <p>
+                <strong>Автомоторельс көлігі:</strong><br>
+                ГАЗ-66 автомашинасы – 1 бірлік
+              
+            </p>
+        </div>
+        <label for="modal-za-kz" class="modal-overlay"></label>
+    </div>
+</div>
+<div class="ru">
+<label for="station-kara" class="btn"></label>
+<input type="checkbox" id="station-kara" class="modal-toggle">
+<div class="modal">
+  <div class="modal-content">
+    <label for="station-kara" class="close">x</label>
+    <h3>Станция Кара-Оба</h3>
+    <p>
+•	Тяговая подстанция<br>
+На тяговой подстанции Кара-Оба (ЭЧЭ-69) обслуживаются ОРУ-110 кВ, 35 кВ, 27,5 кВ, РУ-10 кВ, трансформаторы 110 кВ марки  ТДТНЖ-40000-110/35/27,5 – 2 шт., аккумуляторная батарея OPzS-800 - 1 шт.
+    </p>
+  </div>
+</div>
+</div>
+<!-- В разделе с классом .kk (казахская версия) -->
+<div class="kk">
+    <input type="checkbox" id="modal-kara-kz" class="modal-toggle">
+    <div class="modal">
+        <div class="modal-content">
+            <label for="modal-kara-kz" class="close">×</label>
+            <h3>Қара-Оба станциясы</h3>
+
+            <!-- Тартымдық қосалқы станциясы -->
+            <p>
+                <strong>· Тартымдық қосалқы станциясы</strong><br>
+                Қара-Оба тартымдық қосалқы станциясы (ТҚС-69):<br>
+                110 кВ, 35 кВ, 27,5 кВ АТҚ,<br>
+                10 кВ ТҚ,<br>
+                ТДТНЖ-40000-110/35/27,5 маркалы 110 кВ трансформаторлары - 2 дана,<br>
+                OPzS-800 аккумулятор батареясы - 1 дана жабдыққа қызмет көрсетеді.
+            </p>
+        </div>
+        <label for="modal-kara-kz" class="modal-overlay"></label>
+    </div>
+</div>
+
+<div class="ru">
+<label for="station-arka" class="btn"></label>
+<input type="checkbox" id="station-arka" class="modal-toggle">
+<div class="modal">
+  <div class="modal-content">
+    <label for="station-arka" class="close">x</label>
+    <h3>Станция Арка</h3>
+    <p>
+•	Район электроснабжения<br>
+Район электроснабжения ст. Арка (ЭЧС-5) обеспечивает электроснабжение объектов железнодорожного транспорта и инфраструктуры, бесперебойной работы устройств сигнализации, централизации, блокировки и связи, обеспечивающих электроснабжение объектов устройств магистральной железнодорожной сети по 1 категории надежности. Также осуществляется электроснабжение нетранспортных потребителей. 
+<br>Участки обслуживания: Арыстансор – Арка – Алтынсарино – Талдыколь – Шолаксай – Айке – Теренсай – Кызылсай – Айтеке-би (искл.).
+<br>Технические средства: Эксплуатационная длина 
+<br>ВЛ -10 кВ – 265,2 км, 
+<br>ВЛ-6 кВ – 3,97 км, 
+<br>ВЛ – 0,4 кВ – 23,5 км, обслуживает ЦРП – 1 шт., ТП, КТП – 28 шт. 
+<br>Автотранспорт: автомашина - 1 ед УАЗ 39094..
+  </div>
+</div>
+</div>
+<!-- В разделе с классом .kk (казахская версия) -->
+<div class="kk">
+    <input type="checkbox" id="modal-arka-kz" class="modal-toggle">
+    <div class="modal">
+        <div class="modal-content">
+            <label for="modal-arka-kz" class="close">×</label>
+            <h3>Арқа станциясы</h3>
+
+            <!-- Электрмен жабдықтау ауданы -->
+            <p>
+                <strong>· Электрмен жабдықтау ауданы</strong><br>
+                Арқа ст. электрмен жабдықтау ауданы (ЭЖА-5) теміржол көлігі мен инфрақұрылым нысандарының электрмен жабдықталуын, магистральдық теміржол желісі құрылғыларының нысандарын 1 сенімділік санаты бойынша қамтамасыз етуші белгі беру, орталықтандыру, бұғаттау және байланыс құрылғыларының толассыз жұмысын қамтамасыз етеді. Сондай-ақ көліктік емес тұтынушылардың электрмен жабдықталуы іске асырылады.
+            </p>
+            <p>
+                <strong>Қызмет көрсету телімдері:</strong><br>
+                Арыстансор – Арқа – Алтынсарин – Талдыкөл – Шолақсай – Әйке – Тереңсай – Қызылсай – Әйтеке-би (алынып тасталған).
+            </p>
+            <p>
+                <strong>Техникалық құралдар:</strong><br>
+                Пайдалану ұзындығы<br>
+                10 кВ ӘЖ – 265,2 км,<br>
+                6 кВ ӘЖ – 3,97 км,<br>
+                0,4 кВ ӘЖ – 23,5 км,<br>
+                ОБП - 1 дана, ТҚ, ЖТҚ – 28 дана жабдыққа қызмет көрсетеді.
+            </p>
+            <p>
+                <strong>Автокөлік:</strong><br>
+                УАЗ 39094 автомашинасы - 1 бірлік.
+            </p>
+        </div>
+        <label for="modal-arka-kz" class="modal-overlay"></label>
+    </div>
+</div>
+<section class="slide">
+    <h2>Схема</h2>
+    <div class="content-block">
+        <img src="img/schema_image.png" alt="Схема Костанайской дистанции электроснабжения" style="max-width: 100%; height: auto;">
+    </div>
+</section>
+
+ <!-- Слайд 7:Организационная структура управления -->
+<div class="ru">
+    <section class="slide">
+        <h2>4. Организационная структура управления</h2>
+        <div class="content-block">
+            <p>В нашей дистанции чётко выстроена организационная структура, которая обеспечивает эффективное взаимодействие между различными уровнями управления и специалистами.
+                <br>Мы гордимся командой профессионалов, которая отвечает за бесперебойную работу всех объектов и оптимизацию процессов. 
+            </p>
+            <p>В разделе представлена диаграмма административно и инженерно-технического руководства, а также подчинённость ключевых специалистов.</p>
+    
+            <div class="content-block">
+                <img src="img/rus.jpg" alt=""style="max-width: 100%; height: auto;">
+            </div>
+        </section>
+    </div>
+    <div class="kk">
+        <section class="slide">
+            <h2>4. Басқарудың ұйымдық құрылымы</h2>
+            <div class="content-block1">
+                <p>Дистанциямызда түрлі басқару деңгейлері мен мамандар арасында тиімді өзара әрекет етуші ұйымдық құрылым нақты жұмыс жасауда.
+                 <br>Барлық нысандардың толассыз жұмысына және де үдерістерді тиімділеуге жауап беретін кәсіпқойлардың командасымен мақтан етеміз.    
+                </p>
+                <p>Бөлімде әкімшілік және инженерлік-техникалық басшылығының диаграммасы, сондай-ақ негізгі мамандардың бағыныштылығы көрсетілген. </p>
+            <div class="content-block">
+                <img src="img/kaz.jpg" alt="" style="max-width: 100%; height: auto;">
+            </div>
+    </section>
+</div>
+    <!-- Добавить после секции со схемой -->
+     <div class="ru">
+  <section class="slide">
+    <h2>5. Профсоюзная деятельность</h2>
+    <div class="content-block">
+      <h3>Задачи профсоюза</h3>
+      <p>Профсоюзный комитет Костанайской дистанции электроснабжения занимается защитой прав и интересов работников, созданием комфортных условий труда, участием в распределении социальной помощи и организацией культурных мероприятий.<br>Основные задачи:</p>
+      <ul>
+        <li>Защита трудовых и социально-экономических прав работников.</li>
+        <li>Контроль за соблюдением законодательства в сфере труда.</li>
+        <li>Поддержка сотрудников в сложных жизненных ситуациях.</li>
+        <li>Проведение культурно-массовых и спортивных мероприятий.</li>
+      </ul>
+
+      <h3>Структура профкома</h3>
+      <p><strong>Председатель профсоюзного комитета:</strong> Алейников В.В.</p>
+      <p><strong>Члены профсоюзного комитета:</strong></p>
+      <ul>
+        <li>Нургажанова А.Б.</li>
+        <li>Ғалымтаева С.С.</li>
+        <li>Орынбекова Г.М.</li>
+        <li>Шакубаев Ж.Ж.</li>
+        <li>Бектемисова А.Б.</li>
+        <li>Жантасова С.Н.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+<div class="kk">
+  <section class="slide">
+    <h2>5. Кәсіподақ қызметі</h2>
+    <div class="content-block">
+      <h3>Кәсіподақ мiндеттерi</h3>
+      <p>Қостанай электрмен жабдықтау дистанциясының кәсіподақ комитетi қызметкерлердің құқықтары мен мүдделерiн қорғап, ыңғайлы еңбек жағдайларын құрып, әлеуметтік көмектің бөлінуіне қатысып, мәдени iс-шаралардың  ұйымдастырылуымен айналысады.<br>Негiзгi мiндеттерi:</p>
+      <ul>
+        <li>Қызметкерлердің еңбек және әлеуметтік-экономикалық құқықтарын қорғау.</li>
+        <li>Еңбек саласындағы заңнаманың сақталуына бақылау жасау.</li>
+        <li>Қиын өмірлік жағдайларға тап болған қызметкерлерді қолдау.</li>
+        <li>Жаппай мәдени және спорттық iс-шараларды өткізу.</li>
+      </ul>
+
+      <h3>Кәсіподақ құрылымы</h3>
+      <p><strong>Кәсіподақ комитетінің төрағасы:</strong> Алейников В.В.</p>
+      <p><strong>Кәсіподақ комитетінің мүшелері:</strong></p>
+      <ul>
+        <li>Нургажанова А.Б.</li>
+        <li>Ғалымтаева С.С.</li>
+        <li>Орынбекова Г.М.</li>
+        <li>Шакубаев Ж.Ж.</li>
+        <li>Бектемисова А.Б.</li>
+        <li>Жантасова С.Н.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+<div class="kk">
+<section class="slide">
+    <h2>6. Байланыс ақпараты</h2>
+    <div class="content-block">
+        <div class="contacts-grid">
+            <div class="contact-item">
+                <h3>Мекен-жайы</h3>
+                <p>Қостанай қаласы, Досжанов көшесі, 155 үй<br>
+                Пошталық индексі: 110007</p>
+            </div>
+
+            <div class="contact-item">
+                <h3>Телефондары</h3>
+                <ul>
+                    <li>Қабылдау бөлмесі: <a href="tel:+77142900214">+7 (7142) 90-02-14</a></li>
+                    <li>Кадрлар бөлімі: <a href="tel:+77142900269">90-02-69</a></li>
+                    <li>Энергодиспетчерлер: <a href="tel:+77142900552">90-05-52</a>, <a href="tel:+77142901092">90-10-92</a></li>
+                    <li>ӨТБ: <a href="tel:+77142900847">90-08-47</a>, <a href="tel:+77142900504">90-05-04</a>, <a href="tel:+77142900625">90-07-17</a></li>
+                    <li>Еңбекті қорғау: <a href="tel:+77142900168">90-01-68</a>, <a href="tel:+77142900328">90-03-28</a></li>
+                    <li>Факс: <a>90-10-87</a></li>
+                </ul>
+            </div>
+
+            <div class="contact-item">
+                <h3>Электрондық пошта</h3>
+                <p><a href="mailto:Serikbayeva_L@Kostanay.Railways.kz">Serikbayeva_L@Kostanay.Railways.kz</a></p>
+                
+                <h3>Жұмыс тәртібі</h3>
+                <p>Дс - Жм: 09:00 – 18:30<br>
+                Түскі үзіліс: 13:00 – 14:30<br>
+                Сн–Жс: демалыс күндер</p>
+            </div>
+
+            <div class="contact-item">
+                <h3>Қосымша байланыс телефондары</h3>
+                <div class="sub-contact">
+                    <h4>Абоненттік бөлімі</h4>
+                    <p>Электрмен жабдықтау, шарт жасасу және тұтынушыларға қызмет көрсету мәселелері бойынша<br>
+                    Телефоны: <a href="tel:+77142900625">90-06-25</a>
+                    <p>Дс - Жм: 09:00 – 18:00<br>
+                Түскі үзіліс: 13:00 – 14:00<br>
+                Сн–Жс: демалыс күндер</p>
+                </div>
+
+                <div class="sub-contact">
+                    <h4>Кәсіподақ комитеті</h4>
+                    <p>Әлеуметтік қолдау, кәсіподаққа мүшелік, материалдық көмек беру мәселелері бойынша<br>
+                    Телефондары: <a href="tel:+77142900504">90-05-04</a>, <a href="tel:+77142900717">90-07-17</a><br>
+                    E-mail: <a href="mailto:Aleynikov_V@Kostanay.Railways.kz">Aleynikov_V@Kostanay.Railways.kz</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+<div class="ru">
+<section class="slide">
+    <h2>6. Контактная информация</h2>
+    <div class="content-block">
+        <div class="contacts-grid">
+            <div class="contact-item">
+                <h3>Адрес</h3>
+                <p>г. Костанай, ул. Дощанова, 155<br>
+                Почтовый индекс: 110007</p>
+            </div>
+
+            <div class="contact-item">
+                <h3>Телефоны</h3>
+                <ul>
+                    <li>Приёмная: <a href="tel:+77142900214">+7 (7142) 90-02-14</a></li>
+                    <li>Отдел кадров: <a href="tel:+77142900269">90-02-69</a></li>
+                    <li>Энергодиспетчер: <a href="tel:+77142900552">90-05-52</a>, <a href="tel:+77142901092">90-10-92</a></li>
+                    <li>ПТО: <a href="tel:+77142900847">90-08-47</a>, <a href="tel:+77142900504">90-05-04</a>, <a href="tel:+77142900625">90-07-17</a></li>
+                    <li>Охрана труда: <a href="tel:+77142900168">90-01-68</a>, <a href="tel:+77142900328">90-03-28</a></li>
+                    <li>Факс: <a>90-10-87</a></li>
+                </ul>
+            </div>
+
+            <div class="contact-item">
+                <h3>Электронная почта</h3>
+                <p><a href="mailto:Serikbayeva_L@Kostanay.Railways.kz">Serikbayeva_L@Kostanay.Railways.kz</a></p>
+                
+                <h3>Режим работы</h3>
+                <p>Пн–Пт: 09:00 – 18:30<br>
+                Обед: 13:00 – 14:30<br>
+                Сб–Вс: выходной</p>
+            </div>
+
+            <div class="contact-item">
+                <h3>Дополнительные контакты</h3>
+                <div class="sub-contact">
+                    <h4>Абонентский отдел</h4>
+                    <p>По вопросам электроснабжения и договоров<br>
+                    Телефон: <a href="tel:+77142900625">90-06-25</a>
+                    <p>Пн–Пт: 09:00 – 18:00<br>
+                Обед: 13:00 – 14:30<br>
+                Сб–Вс: выходной</p>
+                </div>
+
+                <div class="sub-contact">
+                    <h4>Профком</h4>
+                    <p>Социальная поддержка и материальная помощь<br>
+                    Телефон: <a href="tel:+77142900504">90-05-04</a>, <a href="tel:+77142900717">90-07-17</a><br>
+                    E-mail: <a href="mailto:Aleynikov_V@Kostanay.Railways.kz">Aleynikov_V@Kostanay.Railways.kz</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+</body>
+</html>
